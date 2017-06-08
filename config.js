@@ -7,7 +7,7 @@ const FRAME_PER_SECOND = 30;
 const ANGLE_MULTIPLICATOR = 5;
 
 // Ball
-const BALL_START_X = 75;
+const BALL_START_X = 250;
 const BALL_START_Y = 350;
 const BALL_START_SPEED_X = 8;
 const BALL_START_SPEED_Y = 6;
