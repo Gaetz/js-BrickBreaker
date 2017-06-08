@@ -8,7 +8,7 @@ const ANGLE_MULTIPLICATOR = 5;
 
 // Ball
 const BALL_START_X = 75;
-const BALL_START_Y = 200;
+const BALL_START_Y = 350;
 const BALL_START_SPEED_X = 8;
 const BALL_START_SPEED_Y = 6;
 const BALL_RADIUS = 10;

@@ -43,6 +43,15 @@ class Ball {
     }
 
     /**
+     * Called when a ball bounces on a brick
+     * @param {*} brick The brick the ball will bounce on
+     */
+    brickBounce(brick) {
+        this.speedX *= -1;
+        this.speedY *= -1;
+    }
+
+    /**
      * Reset ball position and speed
      */
     reset() {

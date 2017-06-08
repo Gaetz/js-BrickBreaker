@@ -11,8 +11,8 @@ class Paddle {
     this.speedX = speedX;
   }
 
-  update() {
-      
+  update(ball) {
+      this.x = ball.x - this.width / 4;
   }
 
   draw(canvasContext) {

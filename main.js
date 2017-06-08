@@ -61,7 +61,6 @@ function loadBricks() {
  */
 function update() {
     ball.update(canvas);
-    paddle.update();
     if (ball.speedY > 0) {  // Save us from a bug
         // Bottom out of terrain
         if (ball.y >= PADDLE_PLAYER_START_Y && ball.y <= PADDLE_PLAYER_START_Y + paddle.height) {
@@ -76,16 +75,24 @@ function update() {
             ball.reset();
         }
     }
+    // Brick logic
+    for (let i = 0; i < bricks.length; i++) {
+        bricks[i].update(ball);
+    }
+    // Paddle AI
+    paddle.update(ball);
 }
+
+
 
 /**
  * Draw loop
  */
 function draw() {
     background.draw(canvasContext);
-    ball.draw(canvasContext);
     paddle.draw(canvasContext);
-    for(let i = 0; i < bricks.length; i++) {
+    for (let i = 0; i < bricks.length; i++) {
         bricks[i].draw(canvasContext);
     }
+    ball.draw(canvasContext);
 }
