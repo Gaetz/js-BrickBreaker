@@ -52,17 +52,19 @@ function load() {
 function update() {
     ball.update(canvas);
     paddle.update();
-    // Bottom out of terrain
-    if (ball.y >= PADDLE_PLAYER_START_Y && ball.y <= PADDLE_PLAYER_START_Y + paddle.height) {
-        // Ball on pad
-        if (ball.x >= paddle.x - ball.radius / 2 && ball.x <= paddle.x + paddle.width + ball.radius / 2) {
-            ball.bounce(paddle, canvas);
+    if (ball.speedY > 0) {  // Save us from a bug
+        // Bottom out of terrain
+        if (ball.y >= PADDLE_PLAYER_START_Y && ball.y <= PADDLE_PLAYER_START_Y + paddle.height) {
+            // Ball on pad
+            if (ball.x >= paddle.x - ball.radius / 2 && ball.x <= paddle.x + paddle.width + ball.radius / 2) {
+                ball.bounce(paddle, canvas);
+            }
         }
-    }
-    // Lose condition
-    if (ball.y > canvas.height) {
-        // Reset ball
-        ball.reset();
+        // Lose condition
+        if (ball.y > canvas.height) {
+            // Reset ball
+            ball.reset();
+        }
     }
 }
 
