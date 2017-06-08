@@ -44,10 +44,8 @@ class Ball {
 
     /**
      * Called when a ball bounces on a brick
-     * @param {*} brick The brick the ball will bounce on
      */
-    brickBounce(brick) {
-        this.speedX *= -1;
+    brickBounce() {
         this.speedY *= -1;
     }
 

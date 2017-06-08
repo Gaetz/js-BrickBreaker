@@ -11,14 +11,8 @@ class Brick {
         this.isAlive = true;
     }
 
-    update(ball) {
-        if (this.isAlive) {
-            if (ball.x >= this.x && ball.x <= this.x + this.width
-                && ball.y >= this.y && ball.y <= this.y + this.height) {
-                ball.brickBounce(this);
-                this.isAlive = false;
-            }
-        }
+    update() {
+
     }
 
     draw(canvasContext) {

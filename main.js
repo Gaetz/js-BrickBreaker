@@ -49,9 +49,9 @@ function load() {
 }
 
 function loadBricks() {
-    for (let i = 0; i < BRICK_COLS; i++) {
-        for (let j = 0; j < BRICK_ROWS; j++) {
-            bricks.push(new Brick(i * BRICK_WIDTH, j * BRICK_HEIGHT))
+    for (let i = 0; i < BRICK_ROWS; i++) {
+        for (let j = 0; j < BRICK_COLS; j++) {
+            bricks.push(new Brick(j * BRICK_WIDTH, i * BRICK_HEIGHT))
         }
     }
 }
@@ -75,15 +75,30 @@ function update() {
             ball.reset();
         }
     }
-    // Brick logic
-    for (let i = 0; i < bricks.length; i++) {
-        bricks[i].update(ball);
-    }
+    // Ball bouncing on brick
+    updateBallCollision();
     // Paddle AI
     paddle.update(ball);
 }
 
+function updateBallCollision() {
+    let brickRow = Math.floor(ball.y / BRICK_HEIGHT);
+    let brickCol = Math.floor(ball.x / BRICK_WIDTH);
+    // Brick col and row must be in config limit
+    if (brickCol < 0 || brickRow < 0 || brickRow >= BRICK_ROWS || brickCol >= BRICK_COLS) 
+        return;
+    // Collision
+    let collidedBrick = getBrickFromColAndRow(brickRow, brickCol);
+    if(collidedBrick.isAlive)
+    {
+        collidedBrick.isAlive = false;
+        ball.brickBounce();
+    }
+}
 
+function getBrickFromColAndRow(brickRow, brickCol) {
+    return bricks[brickCol + brickRow * BRICK_COLS];
+}
 
 /**
  * Draw loop
