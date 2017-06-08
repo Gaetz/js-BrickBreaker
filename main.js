@@ -1,5 +1,5 @@
 let canvas, canvasContext;
-let ball, paddle, background;
+let ball, paddle, bricks, background;
 
 /**
  * Game start
@@ -44,6 +44,16 @@ function load() {
     background = new Background(canvas.width, canvas.height);
     ball = new Ball(BALL_START_X, BALL_START_Y);
     paddle = new Paddle(PADDLE_PLAYER_START_X, PADDLE_PLAYER_START_Y);
+    bricks = [];
+    loadBricks();
+}
+
+function loadBricks() {
+    for (let i = 0; i < BRICK_COLS; i++) {
+        for (let j = 0; j < BRICK_ROWS; j++) {
+            bricks.push(new Brick(i * BRICK_WIDTH, j * BRICK_HEIGHT))
+        }
+    }
 }
 
 /**
@@ -75,4 +85,7 @@ function draw() {
     background.draw(canvasContext);
     ball.draw(canvasContext);
     paddle.draw(canvasContext);
+    for(let i = 0; i < bricks.length; i++) {
+        bricks[i].draw(canvasContext);
+    }
 }

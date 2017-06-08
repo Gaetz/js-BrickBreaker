@@ -21,6 +21,14 @@ const PADDLE_PLAYER_START_X = 400;
 const PADDLE_PLAYER_START_Y = 540;
 const PADDLE_STYLE = 'white';
 
+// Bricks
+const BRICK_WIDTH = 80;
+const BRICK_HEIGHT = 20;
+const BRICK_GAP = 2;
+const BRICK_COLS = 10;
+const BRICK_ROWS = 14;
+const BRICK_STYLE = 'blue';
+
 // Background
 const BACKGROUND_STYLE = 'black';
 
