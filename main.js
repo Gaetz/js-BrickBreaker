@@ -85,14 +85,13 @@ function updateBallCollision() {
     let brickRow = Math.floor(ball.y / BRICK_HEIGHT);
     let brickCol = Math.floor(ball.x / BRICK_WIDTH);
     // Brick col and row must be in config limit
-    if (brickCol < 0 || brickRow < 0 || brickRow >= BRICK_ROWS || brickCol >= BRICK_COLS) 
+    if (brickCol < 0 || brickRow < 0 || brickRow >= BRICK_ROWS || brickCol >= BRICK_COLS)
         return;
     // Collision
     let collidedBrick = getBrickFromColAndRow(brickRow, brickCol);
-    if(collidedBrick.isAlive)
-    {
+    if (collidedBrick.isAlive) {
         collidedBrick.isAlive = false;
-        ball.brickBounce();
+        ball.brickBounce(brickRow, brickCol);
     }
 }
 

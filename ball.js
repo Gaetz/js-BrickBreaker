@@ -45,8 +45,16 @@ class Ball {
     /**
      * Called when a ball bounces on a brick
      */
-    brickBounce() {
-        this.speedY *= -1;
+    brickBounce(row, col) {
+        let previousRow = Math.floor((this.y - this.speedY) / BRICK_HEIGHT);
+        let previousCol = Math.floor((this.x - this.speedX) / BRICK_WIDTH);
+        // Lateral collision
+        if (previousCol != col)
+            this.speedX *= -1;
+        // Horizontal collision
+        if (previousRow != row)
+            this.speedY *= -1;
+
     }
 
     /**
