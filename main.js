@@ -1,5 +1,6 @@
 let canvas, canvasContext;
 let ball, paddle, bricks, background;
+let brickCounter;
 
 /**
  * Game start
@@ -46,6 +47,7 @@ function load() {
     paddle = new Paddle(PADDLE_PLAYER_START_X, PADDLE_PLAYER_START_Y);
     bricks = [];
     loadBricks();
+    brickCounter = BRICK_ROWS * BRICK_COLS;
 }
 
 function loadBricks() {
@@ -77,10 +79,18 @@ function update() {
     }
     // Ball bouncing on brick
     updateBallCollision();
+    // End game
+    if(brickCounter == 0) {
+        resetGame();
+    }
+
     // Paddle AI
     paddle.update(ball);
 }
 
+/**
+ * Handle ball colliding with bricks
+ */
 function updateBallCollision() {
     let brickRow = Math.floor(ball.y / BRICK_HEIGHT);
     let brickCol = Math.floor(ball.x / BRICK_WIDTH);
@@ -92,12 +102,29 @@ function updateBallCollision() {
     if (collidedBrick.isAlive) {
         collidedBrick.isAlive = false;
         ball.brickBounce(brickRow, brickCol);
+        brickCounter = brickCounter - 1;
     }
 }
 
+/**
+ * Get brick index from row and col
+ * @param {int} brickRow 
+ * @param {int} brickCol 
+ */
 function getBrickFromColAndRow(brickRow, brickCol) {
     return bricks[brickCol + brickRow * BRICK_COLS];
 }
+
+/**
+ * Reset game
+ */
+function resetGame() {
+    ball.reset();
+    bricks = [];
+    loadBricks();
+    brickCounter = BRICK_ROWS * BRICK_COLS;
+}
+
 
 /**
  * Draw loop
