@@ -47,15 +47,18 @@ function load() {
     paddle = new Paddle(PADDLE_PLAYER_START_X, PADDLE_PLAYER_START_Y);
     bricks = [];
     loadBricks();
-    brickCounter = BRICK_ROWS * BRICK_COLS - BRICK_ROWS * 3;
+    brickCounter = BRICK_ROWS * BRICK_COLS - BRICK_ROWS * 3 - BRICK_COLS * 2 + 6; // 6 bricks that are counted twice
 }
 
+/**
+ * Load all bricks
+ */
 function loadBricks() {
     for (let i = 0; i < BRICK_ROWS; i++) {
         for (let j = 0; j < BRICK_COLS; j++) {
             let newBrick = new Brick(j * BRICK_WIDTH, i * BRICK_HEIGHT);
             bricks.push(newBrick);
-            if(i < 3)
+            if(i < 3 || j == 0 || j == BRICK_COLS - 1)
                 newBrick.isAlive = false;
         }
     }
@@ -87,8 +90,8 @@ function update() {
         resetGame();
     }
 
-    // Paddle AI
-    paddle.update(ball);
+    // Automatic paddle
+    //paddle.update(ball);
 }
 
 /**

@@ -16,9 +16,9 @@ class Ball {
         this.x += this.speedX;
         this.y += this.speedY;
         // Wall bounce
-        if (this.y < 0)
+        if (this.y <= 0)
             this.speedY *= -1;
-        if (this.x > canvas.width || this.x < 0)
+        if (this.x >= canvas.width || this.x <= 0)
             this.speedX *= -1;
     }
 
